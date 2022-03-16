@@ -6,7 +6,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
-
 const app = express();
 
 // autoIndex = vérifie si l'index dans la db est unique afin de ne pas duppliquer (accélération des données)
@@ -31,7 +30,7 @@ app.use(cors(corsOption));
 
 app.use('/api/wilder', wilderRouter);
 app.use((req, res) => {
-    res.send("Route qui n'existe pas", 404);
+    res.status(404).send("Route qui n'existe pas");
 });
 
 app.listen(PORT, () => console.log(`Server lancé sur le port ${PORT}`));
